@@ -1,0 +1,48 @@
+{% extends '_layout.html' %}
+
+
+{% block title %}Available Books{% endblock %}
+
+
+{% block body %}
+
+<h1 class="search-heading">Available Books</h1>
+
+
+<div class="search-textbook-list">
+
+    {% for book in books %}
+
+    <div class="search-textbook">
+
+        <img src="{{ book.image_url }}" alt="{{ book.title }}" class="search-textbook-image">
+
+        <div class="search-textbook-info">
+
+            <h2 class="search-textbook-title">{{ book.title }}</h2>
+
+            <p class="search-textbook-description">{{ book.description }}</p>
+
+        </div>
+
+        <div class="search-textbook-price">
+
+            <p>${{ book.price }}</p>
+
+            <form action="{{ url_for('book') }}" method="GET">
+
+                <input type="hidden" name="textbook_id" value="{{ book.textbook_id }}">
+
+                <button type="submit" class="book-buy-button">View Details</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
